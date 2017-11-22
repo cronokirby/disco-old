@@ -6,7 +6,7 @@ license-file:        LICENSE.md
 author:              Lúcás Meier
 maintainer:          cronokirby@gmail.com
 copyright:           2017 Lúcás Meier
-category:            Web
+category:            Network
 build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10

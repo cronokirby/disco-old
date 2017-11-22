@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import           Network.Disco
 
 main :: IO ()
 main = someFunc
