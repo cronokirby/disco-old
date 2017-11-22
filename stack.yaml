@@ -9,4 +9,4 @@ flags: {}
 
 extra-package-dbs: []
 
- compiler-check: newer-minor
+compiler-check: newer-minor
