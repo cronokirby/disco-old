@@ -1,11 +1,22 @@
 {-# LANGUAGE FlexibleContexts      #-}
 {-# LANGUAGE GADTs                 #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
-module Network.Disco.Types () where
+module Network.Disco.Types
+    ( module Network.Disco.Types.Common
+    , module Network.Disco.Types.Guild
+    , APIResponse
+    , DiscordAPI
+    , DiscordError
+    , DiscordRequest(..)
+    )
+where
 
-import           Control.Exception (Exception)
-import           Data.Aeson        (FromJSON)
+import           Control.Exception          (Exception)
+import           Data.Aeson                 (FromJSON)
 import           Network.HTTP.Req
+-- Reexport modules
+import           Network.Disco.Types.Common
+import           Network.Disco.Types.Guild
 
 
 -- | Represents the errors that can be raised by the Discord API.
