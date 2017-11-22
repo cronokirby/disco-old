@@ -1,6 +1,11 @@
+{-# LANGUAGE FlexibleContexts      #-}
+{-# LANGUAGE GADTs                 #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
 module Network.Disco.Types () where
 
 import           Control.Exception (Exception)
+import           Data.Aeson        (FromJSON)
+import           Network.HTTP.Req
 
 
 -- | Represents the errors that can be raised by the Discord API.
@@ -49,3 +54,18 @@ data DiscordError
     deriving (Show)
 
 instance Exception DiscordError
+
+
+data APIResponse a
+    = APIResponse a
+    | APIError DiscordError
+    | APIRateLimited
+
+
+data DiscordRequest r where
+    DiscordRequest :: (HttpBody b, HttpMethod h, HttpBodyAllowed (AllowsBody h) (ProvidesBody b)) =>
+                      b -> h -> Url s -> Option s -> DiscordRequest r
+
+
+class Monad m => DiscordAPI m where
+    runRequest :: FromJSON r => DiscordRequest r -> m (APIResponse r)
